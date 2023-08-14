@@ -1,50 +1,18 @@
-const bullets = document.querySelectorAll('.bullet');
-const imgs = document.querySelectorAll('.img');
-// const firstImg = document.getElementsByClassName('.first');
-let currentImg = 1;
-let manualNav = function (manual){
-    imgs.forEach((img)=>{
-       img.classList.remove('active');
+'use strict'
 
-       bullets.forEach((bullet)=>{
-           bullet.classList.remove('active');
-       });
-    });
-    bullets[manual].classList.add('active');
-    imgs[manual].classList.add('active');
-}
+const imgList = document.querySelectorAll('.img');
 
-bullets.forEach((bullet , i) =>{
-        bullet.addEventListener('click', () =>{
-            manualNav(i);
-            currentImg = i;
+setInterval(() => {
+    let activeItem;
+    let activeIndex;
+    imgList.forEach((el, index) => {
+        if (el.classList.contains('active')) {
+            activeItem = el;
+            activeIndex = index;
+            activeItem.classList.remove('active');
+        }
+    })
+    const newActiveIndex = activeIndex + 1;
+    imgList[newActiveIndex].classList.add('active');
 
-        });
-});
-
-
-let repeat = function (activeClass){
-  let active = document.getElementsByClassName('active');
-  let i = 1;
-  let repeater = () => {
-      setTimeout(function (){
-          [...active].forEach((activeImg) =>{
-              activeImg.classList.remove('active')
-          });
-         imgs[i].classList.add('active');
-         bullets[i].classList.add('active');
-         i++;
-         if (imgs.length == i){
-             i = 0;
-         }
-         if(i >= imgs.length){
-             return;
-         }
-         repeater();
-      } ,5000);
-  }
-    repeater();
-};
-repeat();
-
-
+}, 3000);
