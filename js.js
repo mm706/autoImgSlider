@@ -12,7 +12,7 @@ function bulletActive(number){
 setInterval(() => {
     let activeIndex;
     for (let i = 0; i < imgList.length; i++) {
-        // imgList.forEach((el, index)
+
             if (imgList[i].classList.contains('active')) {
                 activeIndex = i;
                 imgList[i].classList.remove('active');
